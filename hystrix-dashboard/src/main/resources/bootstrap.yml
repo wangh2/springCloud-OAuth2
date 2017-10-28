@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: hystrixDashboard
+
+# Define the port where the Widget Foundry server would be running
+server:
+  port: 8004
+
+eureka:
+    instance:
+        prefer-ip-address: true
+        instanceId: ${spring.application.name}:${spring.application.name}:${server.port}:${spring.application.instance_id:${random.value}}
+    client:
+        enabled: true
+        healthcheck:
+            enabled: true
+        registerWithEureka: true
+        fetchRegistry: true
+        serviceUrl:
+            defaultZone: http://admin:admin@localhost:8761/eureka/
